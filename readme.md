@@ -20,7 +20,7 @@ Diffusers allows you to test VQ-Diffusion in just a couple lines of code.
 You can install diffusers as follows:
 
 ```
-pip install diffusers torch accelerate transformers
+pip install git+https://github.com/huggingface/diffusers.git torch accelerate transformers
 ```
 
 And then try out the model with just a couple lines of code:
@@ -29,16 +29,17 @@ And then try out the model with just a couple lines of code:
 import torch
 from diffusers import VQDiffusionPipeline
 
-pipeline = VQDiffusionPipeline.from_pretrained("microsoft/vq-diffusion-ithq", torch_dtype=torch.float16, revision="fp16")
+pipeline = VQDiffusionPipeline.from_pretrained("microsoft/vq-diffusion-ithq", torch_dtype=torch.float16)
 pipeline = pipeline.to("cuda")
 
-image = pipeline("teddy bear playing in the pool", truncation_rate=0.86).images[0]
+image = pipeline("teddy bear playing in the pool", truncation_rate=1.0).images[0]
 
 # save image
 image.save("./teddy_bear.png")
 ```
 
-You can find the model card of the **ITHQ** checkpoint [here](https://huggingface.co/microsoft/vq-diffusion-ithq).
+You can find the model card of the **ITHQ** checkpoint [here](https://huggingface.co/microsoft/vq-diffusion-ithq)
+and a nice space to play around with the model [here](https://huggingface.co/spaces/patrickvonplaten/vq-vs-stable-diffusion).
 
 ## Requirements
 
